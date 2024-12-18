@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrierung und Anmeldung</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #1a1a1a;
+            box-shadow: 0 0 20px #00ffff;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            background-color: #2a2a2a;
+            color: #ffffff;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00ffff;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00bfbf;
+        }
+        .info-container {
+            display: none;
+        }
+        .info-container h2 {
+            color: #00ffff;
+        }
+        .info-container p {
+            color: #bfbfbf;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container" id="registerContainer">
+            <h2>Registrierung</h2>
+            <form id="registrationForm">
+                <input type="email" id="registerEmail" placeholder="E-Mail" required>
+                <input type="password" id="registerPassword" placeholder="Passwort" required>
+                <button type="button" onclick="register()">Registrieren</button>
+            </form>
+        </div>
+        <div class="form-container" id="loginContainer">
+            <h2>Anmeldung</h2>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="E-Mail" required>
+                <input type="password" id="loginPassword" placeholder="Passwort" required>
+                <button type="button" onclick="login()">Anmelden</button>
+            </form>
+        </div>
+        <div class="info-container" id="infoContainer">
+            <h2>Willkommen bei Minecraft-Fans!</h2>
+            <p>Minecraft ist ein Sandbox-Spiel, in dem Spieler Blöcke abbauen, platzieren und Abenteuer erleben können. Es gibt verschiedene Spielmodi wie Überleben, Kreativ, Abenteuer und Hardcore.</p>
+            <p>Baue und erkunde die unendlichen Welten von Minecraft und lass deiner Kreativität freien Lauf!</p>
+        </div>
+    </div>
+    <script>
+        function register() {
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+            alert('Registrierung erfolgreich!');
+            document.getElementById('registerContainer').style.display = 'none';
+            document.getElementById('loginContainer').style.display = 'block';
+        }
+
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const storedEmail = localStorage.getItem('email');
+            const storedPassword = localStorage.getItem('password');
+            
+            if (email === storedEmail && password === storedPassword) {
+                alert('Anmeldung erfolgreich!');
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('infoContainer').style.display = 'block';
+            } else {
+                alert('E-Mail oder Passwort ist falsch.');
+            }
+        }
+    </script>
+</body>
+</html>
